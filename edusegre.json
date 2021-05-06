@@ -1,0 +1,9 @@
+{
+  "notas": [
+    {
+      "titulo": "Red note",
+      "cuerpo": "This is a red note",
+      "color": "red"
+    }
+  ]
+}
