@@ -4,10 +4,9 @@ import lowdb from "lowdb";
 import FileSync from 'lowdb/adapters/FileSync';
 
 type schemaType = {
-    notas: {
+    mensajes: {
         titulo: string;
         cuerpo: string;
-        color: string;
     }[];
 };
 
@@ -19,12 +18,12 @@ export class jsonNotaList extends NotaList {
         super(notas, nombreUsuario);
         this.database = lowdb(new FileSync(nombreUsuario + ".json"));
         if(this.database.has('notas').value()) {
-            let dbItems = this.database.get('notas').value();
+            let dbItems = this.database.get('mensajes').value();
             dbItems.forEach(item =>{
-                this.NotasMap.set(item.titulo, new Nota(item.titulo, item.cuerpo, item.color));
+                this.NotasMap.set(item.titulo, new Nota(item.titulo, item.cuerpo));
             });
         }else{
-            this.database.set('notas', notas).write();
+            this.database.set('mensajes', notas).write();
             notas.forEach(item =>{
                 this.NotasMap.set(item.titulo, item);
             });
@@ -41,7 +40,7 @@ export class jsonNotaList extends NotaList {
     }
 
     storeNota() {
-        this.database.set('notas', [...this.NotasMap.values()]).write(); 
+        this.database.set('mensajes', [...this.NotasMap.values()]).write(); 
     }
 
     nuevaNota(nota: Nota): string {

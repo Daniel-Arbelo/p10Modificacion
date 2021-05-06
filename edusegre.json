@@ -1,9 +1,8 @@
 {
-  "notas": [
+  "mensajes": [
     {
       "titulo": "Red note",
-      "cuerpo": "This is a red note",
-      "color": "red"
+      "cuerpo": "This is a red mensaje"
     }
   ]
 }

@@ -14,13 +14,13 @@ class jsonNotaList extends NotaList_1.NotaList {
         this.nombreUsuario = nombreUsuario;
         this.database = lowdb_1.default(new FileSync_1.default(nombreUsuario + ".json"));
         if (this.database.has('notas').value()) {
-            let dbItems = this.database.get('notas').value();
+            let dbItems = this.database.get('mensajes').value();
             dbItems.forEach(item => {
-                this.NotasMap.set(item.titulo, new Nota_1.Nota(item.titulo, item.cuerpo, item.color));
+                this.NotasMap.set(item.titulo, new Nota_1.Nota(item.titulo, item.cuerpo));
             });
         }
         else {
-            this.database.set('notas', notas).write();
+            this.database.set('mensajes', notas).write();
             notas.forEach(item => {
                 this.NotasMap.set(item.titulo, item);
             });
@@ -35,7 +35,7 @@ class jsonNotaList extends NotaList_1.NotaList {
         }
     }
     storeNota() {
-        this.database.set('notas', [...this.NotasMap.values()]).write();
+        this.database.set('mensajes', [...this.NotasMap.values()]).write();
     }
     nuevaNota(nota) {
         let retornar = super.nuevaNota(nota);

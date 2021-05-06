@@ -14,7 +14,7 @@ export class NotaList{
     nuevaNota(nota: Nota):string {
         if(this.getNotaByTitulo(nota.titulo) === undefined) {
             this.NotasMap.set(nota.titulo, nota);
-            console.log(chalk.green("Nueva nota añadida!!"));
+            console.log(chalk.green("Nuevo mensaje añadido!!"));
             return '{"body": "Nueva nota añadida!!", "color": "green"}';
         }
         else{
@@ -33,8 +33,6 @@ export class NotaList{
             console.log(chalk.red("Not note found"));
         }
         else{
-            console.log(chalk.keyword(notaAimprimir.color)(notaAimprimir.titulo));
-            console.log(chalk.keyword(notaAimprimir.color)(notaAimprimir.cuerpo));
 
         }
         return notaAimprimir;
@@ -45,18 +43,17 @@ export class NotaList{
         console.log(chalk.green("Tus notas:"));
         this.NotasMap.forEach(nota => {
             notas.push(nota);
-            console.log(chalk.keyword(nota.color)(nota.titulo));
         });
         return notas;
     }
 
     notaAEliminar(titulo:string) {
         if(this.getNotaByTitulo(titulo) === undefined) {
-            console.log(chalk.red("Nota no encontrada"));
+            console.log(chalk.red("Mensaje no encontrada"));
         }
         else{
             this.NotasMap.delete(titulo);
-            console.log(chalk.green("Nota eliminada!"));
+            console.log(chalk.green("Mensaje eliminada!"));
         }
     }
 }
